@@ -29,7 +29,7 @@ public class LootTableModifier {
     private static final Logger logger = LoggerFactory.getLogger("random-fishing");
 
     private static final Set<Identifier> fishingLootTableIds = Set.of(
-            Identifier.fromNamespaceAndPath("minecraft", "gameplay/fishing")
+            Identifier.fromNamespaceAndPath("minecraft", "gameplay/fishing/fish")
     );
 
     public static void modifyLootTable() {
@@ -38,27 +38,30 @@ public class LootTableModifier {
                 return null;
             }
 
-            HolderLookup.RegistryLookup<Item> itemRegistry = registries.lookupOrThrow(Registries.ITEM);
-
             LootPool.Builder lootPool = LootPool.lootPool()
                     .setRolls(ConstantValue.exactly(1.0f))
                     .conditionally(LootItemRandomChanceCondition.randomChance(1f).build());
 
-            for (ResourceKey<Item> itemKey : itemRegistry.listElementIds().toList()) {
-                Item item = itemRegistry.getOrThrow(itemKey).value();
-                if (item.equals(Items.EGG)) {
-                    LootPoolSingletonContainer.Builder<?> lootItemBuilder = LootItem.lootTableItem(item)
-                            .setWeight(1);
-                    lootPool.add(lootItemBuilder)
-                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1f)));
-                }
-                if (item.equals(Items.COOKIE)) {
-                    LootPoolSingletonContainer.Builder<?> lootItemBuilder = LootItem.lootTableItem(item)
-                            .setWeight(9);
-                    lootPool.add(lootItemBuilder)
-                            .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1f)));
-                }
-            }
+            lootPool.add(LootItem.lootTableItem(Items.KELP)
+                    .setWeight(60)
+                    .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1f))));
+
+            lootPool.add(LootItem.lootTableItem(Items.CLAY_BALL)
+                    .setWeight(25)
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f))));
+
+            lootPool.add(LootItem.lootTableItem(Items.SEA_PICKLE)
+                    .setWeight(13)
+                    .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1f))));
+
+            lootPool.add(LootItem.lootTableItem(Items.PRISMARINE_SHARD)
+                    .setWeight(1)
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 2f))));
+
+            lootPool.add(LootItem.lootTableItem(Items.PRISMARINE_CRYSTALS)
+                    .setWeight(1)
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 2f))));
+
 
             LootTable.Builder tableBuilder = LootTable.lootTable();
             tableBuilder.pool(lootPool.build());
