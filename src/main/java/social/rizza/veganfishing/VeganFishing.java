@@ -4,7 +4,7 @@ import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import social.rizza.veganfishing.loot.LootTableModifier;
+import social.rizza.veganfishing.loot.FishLootTableModifier;
 
 public class VeganFishing implements ModInitializer {
 	public static final String MOD_ID = "vegan-fishing";
@@ -17,6 +17,6 @@ public class VeganFishing implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-		LootTableModifier.modifyLootTable();
+		FishLootTableModifier.modifyLootTable();
 	}
 }
