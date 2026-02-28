@@ -3,13 +3,13 @@
 	"id": "vegan-fishing",
 	"version": "${version}",
 	"name": "Vegan fishing",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A Fabric mod for Minecraft Java 1.21.1 that replaces the fish loot table with plant-based and ocean-themed alternatives, allowing players to enjoy the relaxing fishing minigame without harming any virtual wildlife.",
 	"authors": [
-		"Me!"
+		"dev@rizza.social"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/project/vegan-fishing",
+		"sources": "https://github.com/RossKeen/minecraft-vegan-fishing"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/vegan-fishing/icon.png",
